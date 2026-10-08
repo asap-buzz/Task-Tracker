@@ -1,9 +1,13 @@
-import 'dotenv/config';
+import dotenv from 'dotenv';
+dotenv.config();
 
-const required = (key) => {
-  if (!process.env[key]) throw new Error(`Missing required env var: ${key}`);
-  return process.env[key];
-};
+function required(name) {
+  const value = process.env[name];
+  if (!value) {
+    throw new Error(`Missing required environment variable: ${name}`);
+  }
+  return value;
+}
 
 export const config = {
   env: process.env.NODE_ENV || 'development',
